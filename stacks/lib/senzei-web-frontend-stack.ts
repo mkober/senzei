@@ -8,6 +8,7 @@ import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
 import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
 import * as cloudfront_origins from 'aws-cdk-lib/aws-cloudfront-origins';
 import * as iam from 'aws-cdk-lib/aws-iam';
+import * as sts from 'aws-cdk-lib/aws-sts';
 
 import { ConfigProps } from './config';
 
@@ -40,6 +41,9 @@ export class SenzeiWebFrontEndStack extends cdk.Stack {
       principals: [new iam.CanonicalUserPrincipal(cloudfrontOAI.cloudFrontOriginAccessIdentityS3CanonicalUserId)]
     }));
     new CfnOutput(this, 'Bucket: ', { value: webBucket.bucketName });
+
+    const deploymentAccountId = '533267270751'; 
+    const targetAccountId = '384220398932';
 
     // Route53 Domain Zone
     const domainZone = route53.HostedZone.fromLookup(this, 'Domain', {
