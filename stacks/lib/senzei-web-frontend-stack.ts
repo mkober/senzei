@@ -42,8 +42,8 @@ export class SenzeiWebFrontEndStack extends cdk.Stack {
     }));
     new CfnOutput(this, 'Bucket: ', { value: webBucket.bucketName });
 
-    const deploymentAccountId = '533267270751'; 
-    const targetAccountId = '384220398932';
+    const deploymentAccountId = props.config.DEPLOY_ACCOUNT; 
+    const targetAccountId = props.config.DOMAIN_ACCOUNT;
 
     // Route53 Domain Zone
     const domainZone = route53.HostedZone.fromLookup(this, 'Domain', {

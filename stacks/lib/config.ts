@@ -8,16 +8,20 @@ dotenv.config({
 
 export type ConfigProps = {
   REGION: string,
-  ACCOUNT: string,
   DOMAIN: string,
   DOMAIN_ALT: string,
-  DOMAIN_WILDCARD: string
+  DOMAIN_WILDCARD: string,
+  DOMAIN_ACCOUNT: string,
+  DEPLOY_ACCOUNT: string,
+  DEPLOY_DOMAIN: string,
 };
 
 export const getConfig = (): ConfigProps => ({
   REGION: process.env.REGION || "us-east-1",
-  ACCOUNT: process.env.ACCOUNT || "",
+  DEPLOY_ACCOUNT: process.env.DEPLOY_ACCOUNT || "",
+  DEPLOY_DOMAIN: process.env.DOMAIN || "",
   DOMAIN: process.env.DOMAIN || "",
   DOMAIN_ALT: process.env.DOMAIN_ALT || "",
-  DOMAIN_WILDCARD: process.env.DOMAIN_WILDCARD || ""
+  DOMAIN_WILDCARD: process.env.DOMAIN_WILDCARD || "",
+  DOMAIN_ACCOUNT: process.env.DOMAIN_ACCOUNT || "",
 });
